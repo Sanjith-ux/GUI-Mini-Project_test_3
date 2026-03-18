@@ -2,7 +2,7 @@ import { defineStore } from "pinia";
 import { computed, ref } from "vue";
 import type { Product, ProductsResponse } from "@/types/product";
 
-const API_URL = "https://dummyjson.com/products?limit=100";
+const API_URL = "https://dummyjson.com/products?limit=50";
 
 export const useProductsStore = defineStore("products", () => {
   const products = ref<Product[]>([]);
