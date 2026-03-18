@@ -1,6 +1,6 @@
 <template>
   <header class="border-b border-slate-200/60 bg-white/70 backdrop-blur transition-colors duration-300 dark:border-slate-800 dark:bg-slate-900/70">
-    <div class="mx-auto flex w-full max-w-6xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
+    <div class="mx-auto flex w-full max-w-6xl flex-col gap-4 px-4 py-4 sm:flex-row sm:items-center sm:justify-between sm:gap-6 sm:px-6 lg:px-8">
       <RouterLink to="/" class="flex items-center gap-3">
         <div class="flex h-10 w-10 items-center justify-center rounded-2xl bg-brand-500 text-white shadow-soft transition-transform duration-300 hover:scale-105">
           <span class="font-display text-lg">N</span>
@@ -11,19 +11,19 @@
         </div>
       </RouterLink>
 
-      <div class="flex items-center gap-4">
-        <div class="hidden rounded-full border border-slate-200 px-4 py-2 text-sm text-slate-600 transition-colors duration-300 dark:border-slate-700 dark:text-slate-300 md:flex">
+      <div class="flex w-full flex-wrap items-center gap-3 sm:w-auto sm:gap-4">
+        <div class="hidden rounded-full border border-slate-200 px-4 py-2 text-sm text-slate-600 transition-colors duration-300 dark:border-slate-700 dark:text-slate-300 lg:flex">
           Free shipping over $50
         </div>
         <button
-          class="flex items-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-2 text-sm text-slate-700 shadow-sm transition hover:-translate-y-0.5 hover:border-slate-300 hover:shadow-md dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200"
+          class="flex flex-1 items-center justify-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-2 text-sm text-slate-700 shadow-sm transition hover:-translate-y-0.5 hover:border-slate-300 hover:shadow-md dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200 sm:flex-none"
           type="button"
           @click="toggleDarkMode"
         >
           <span>{{ isDark ? "Dark" : "Light" }}</span>
           <span class="text-xs text-slate-400 dark:text-slate-500">Mode</span>
         </button>
-        <div class="flex items-center gap-2 rounded-full bg-slate-900 px-4 py-2 transition-colors duration-300 dark:bg-slate-800">
+        <div class="flex flex-1 items-center justify-center gap-2 rounded-full bg-slate-900 px-4 py-2 transition-colors duration-300 dark:bg-slate-800 sm:flex-none">
           <span class="text-sm text-slate-200">Cart</span>
           <span class="rounded-full bg-brand-500 px-2 py-0.5 text-xs font-semibold text-white">
             {{ cart.totalItems }}

@@ -12,7 +12,7 @@
         </span>
       </div>
     </RouterLink>
-    <div class="flex flex-1 flex-col gap-4 p-5">
+    <div class="flex flex-1 flex-col gap-4 p-4 sm:p-5">
       <div>
         <h3 class="text-base font-semibold text-slate-900 transition-colors duration-300 group-hover:text-brand-600 dark:text-white">
           {{ product.title }}

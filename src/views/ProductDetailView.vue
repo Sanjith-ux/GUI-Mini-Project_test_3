@@ -10,9 +10,9 @@
       Product not found.
     </div>
 
-    <div v-else class="grid gap-8 lg:grid-cols-[1.2fr,1fr]">
+    <div v-else class="grid gap-6 lg:grid-cols-[1.2fr,1fr] lg:gap-8">
       <div class="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-soft transition-colors duration-300 dark:border-slate-800 dark:bg-slate-900">
-        <img :src="product.thumbnail" :alt="product.title" class="h-full w-full object-cover" />
+        <img :src="product.thumbnail" :alt="product.title" class="aspect-[4/3] h-full w-full object-cover" />
       </div>
       <div class="space-y-4 rounded-3xl border border-slate-200 bg-white p-8 shadow-soft transition-colors duration-300 dark:border-slate-800 dark:bg-slate-900">
         <div>
@@ -20,9 +20,9 @@
           <h1 class="mt-2 font-display text-3xl text-slate-900 dark:text-white">{{ product.title }}</h1>
           <p class="mt-3 text-sm text-slate-600 dark:text-slate-300">{{ product.description }}</p>
         </div>
-        <div class="flex items-center justify-between">
+        <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <span class="text-2xl font-semibold text-slate-900 dark:text-white">${{ product.price }}</span>
-          <div class="flex items-center gap-2">
+          <div class="flex flex-wrap items-center gap-2">
             <button
               class="rounded-full border border-slate-200 px-4 py-2 text-sm text-slate-600 transition hover:border-slate-300 dark:border-slate-700 dark:text-slate-300 dark:hover:border-slate-500"
               @click="cart.decreaseItem(product.id)"
