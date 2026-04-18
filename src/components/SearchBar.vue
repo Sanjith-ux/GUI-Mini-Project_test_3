@@ -12,7 +12,7 @@
 </template>
 
 <script setup lang="ts">
-const props = defineProps<{ modelValue: string }>();
+defineProps<{ modelValue: string }>();
 const emit = defineEmits<{ (event: "update:modelValue", value: string): void }>();
 
 const onInput = (event: Event) => {

@@ -17,7 +17,7 @@
 </template>
 
 <script setup lang="ts">
-const props = defineProps<{ modelValue: string; categories: string[] }>();
+defineProps<{ modelValue: string; categories: string[] }>();
 const emit = defineEmits<{ (event: "update:modelValue", value: string): void }>();
 
 const formatCategory = (value: string) => {

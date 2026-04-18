@@ -19,16 +19,20 @@
           class="flex flex-1 items-center justify-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-2 text-sm text-slate-700 shadow-sm transition hover:-translate-y-0.5 hover:border-slate-300 hover:shadow-md dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200 sm:flex-none"
           type="button"
           @click="toggleDarkMode"
+          aria-label="Toggle theme"
         >
-          <span>{{ isDark ? "Dark" : "Light" }}</span>
-          <span class="text-xs text-slate-400 dark:text-slate-500">Mode</span>
+          <span class="text-lg leading-none" aria-hidden="true">{{ isDark ? "☾" : "☀️" }}</span>
         </button>
-        <div class="flex flex-1 items-center justify-center gap-2 rounded-full bg-slate-900 px-4 py-2 transition-colors duration-300 dark:bg-slate-800 sm:flex-none">
-          <span class="text-sm text-slate-200">Cart</span>
+        <RouterLink
+          to="/cart"
+          class="flex flex-1 items-center justify-center gap-2 rounded-full border border-slate-200 bg-white/70 px-4 py-2 text-sm text-slate-700 shadow-sm transition duration-300 hover:-translate-y-0.5 hover:border-slate-300 hover:bg-white hover:shadow-md dark:border-slate-700 dark:bg-slate-800/70 dark:text-slate-200 dark:hover:border-slate-600 dark:hover:bg-slate-800 sm:flex-none"
+          aria-label="Go to cart"
+        >
+          <span>Cart</span>
           <span class="rounded-full bg-brand-500 px-2 py-0.5 text-xs font-semibold text-white">
             {{ cart.totalItems }}
           </span>
-        </div>
+        </RouterLink>
       </div>
     </div>
   </header>
