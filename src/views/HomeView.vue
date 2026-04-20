@@ -10,22 +10,26 @@
       </p>
     </div>
 
-    <div class="grid gap-4 lg:grid-cols-[2fr,3fr]">
+    <div class="grid items-center gap-4 lg:grid-cols-[5fr,7fr]">
       <SearchBar v-model="search" />
       <FilterBar v-model="selectedCategory" :categories="productsStore.categories" />
     </div>
 
-    <div v-if="!productsStore.isLoading && filteredProducts.length === 0" class="rounded-3xl border border-slate-200 bg-white p-8 text-center shadow-soft transition-colors duration-300 sm:p-10 dark:border-slate-800 dark:bg-slate-900">
+    <div
+      v-if="!productsStore.isLoading && filteredProducts.length === 0"
+      class="rounded-3xl border border-slate-200 bg-white p-8 text-center shadow-soft transition-colors duration-300 sm:p-10 dark:border-slate-800 dark:bg-slate-900"
+    >
       <p class="text-lg font-semibold text-slate-900 dark:text-white">No products found</p>
       <p class="mt-2 text-sm text-slate-500 dark:text-slate-400">Try adjusting your search or filter selection.</p>
     </div>
 
-    <ProductList
-      v-else
-      :products="filteredProducts"
-      :is-loading="productsStore.isLoading"
-      :error="productsStore.error"
-    />
+    <div v-else id="products">
+      <ProductList
+        :products="filteredProducts"
+        :is-loading="productsStore.isLoading"
+        :error="productsStore.error"
+      />
+    </div>
   </section>
 </template>
 
