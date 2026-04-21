@@ -24,6 +24,31 @@
         >
           Free shipping over $50
         </div>
+        <template v-if="auth.isAuthenticated">
+          <div
+            class="hidden items-center gap-2 rounded-full border border-slate-200 bg-white/70 px-4 py-2 text-sm text-slate-700 shadow-sm transition-colors duration-300 dark:border-slate-700 dark:bg-slate-900/40 dark:text-slate-200 lg:flex"
+            aria-label="Logged in user"
+          >
+            <span class="h-2 w-2 rounded-full bg-emerald-500" aria-hidden="true" />
+            <span class="font-medium">{{ auth.user?.firstName ?? "Account" }}</span>
+          </div>
+          <button
+            type="button"
+            class="flex flex-1 items-center justify-center rounded-full border border-slate-200 bg-white px-5 py-2 text-sm font-semibold text-slate-700 shadow-sm transition hover:-translate-y-0.5 hover:border-slate-300 hover:shadow-md dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200 sm:flex-none"
+            @click="onLogout"
+            aria-label="Log out"
+          >
+            Log Out
+          </button>
+        </template>
+        <RouterLink
+          v-else
+          :to="loginTo"
+          :class="[navPillBase, isLoginActive ? navPillActive : navPillIdle]"
+          aria-label="Log in"
+        >
+          Log In
+        </RouterLink>
         <RouterLink
           :to="{ path: '/', hash: '#products' }"
           class="flex flex-1 items-center justify-center rounded-full bg-brand-500 px-5 py-2 text-sm font-semibold text-white shadow-sm shadow-brand-500/20 transition hover:-translate-y-0.5 hover:bg-brand-600 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500/40 dark:shadow-brand-500/10 sm:flex-none"
@@ -75,13 +100,24 @@
 <script setup lang="ts">
 import { computed, onMounted, ref } from "vue";
 import { useCartStore } from "@/store/cart";
+import { useAuthStore } from "@/store/auth";
 import { useRoute } from "vue-router";
+import { useRouter } from "vue-router";
 
 const cart = useCartStore();
+const auth = useAuthStore();
 const isDark = ref(true);
 const route = useRoute();
+const router = useRouter();
 
 const isCartActive = computed(() => route.path === "/cart");
+const isLoginActive = computed(() => route.path === "/login");
+
+const onLogout = async () => {
+  auth.logout();
+  if (route.path === "/login") return;
+  await router.push({ name: "home" });
+};
 
 const navPillBase =
   "flex flex-1 items-center justify-center gap-2 rounded-full border bg-white px-4 py-2 text-sm shadow-sm transition hover:-translate-y-0.5 hover:shadow-md dark:bg-slate-800 sm:flex-none";
@@ -91,6 +127,11 @@ const navPillIdle =
 
 const navPillActive =
   "border-brand-200 bg-brand-50 text-brand-700 shadow-md shadow-brand-500/10 hover:border-brand-300 dark:border-brand-500/30 dark:bg-brand-500/10 dark:text-brand-100";
+
+const loginTo = computed(() => ({
+  name: "login",
+  query: { redirect: route.fullPath },
+}));
 
 const applyTheme = (value: boolean) => {
   const root = document.documentElement;
