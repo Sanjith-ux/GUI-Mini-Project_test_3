@@ -8,7 +8,7 @@
           class="h-full w-full object-cover transition duration-300 group-hover:scale-105"
         />
         <span class="absolute left-4 top-4 rounded-full bg-slate-950/80 px-3 py-1 text-xs text-slate-200">
-          {{ product.category }}
+          {{ product.category.charAt(0).toUpperCase() + product.category.slice(1) }}
         </span>
       </div>
     </RouterLink>
